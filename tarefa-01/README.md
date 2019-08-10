@@ -1,10 +1,10 @@
-##Tarefa-01
+## Tarefa-01
 
 Este repositório foi criado para divulgar os exercícios realizados para a matéria de Estruturas de Linguagens, realizada em 2019/2 pelo professor Francisco Santanna, na Universidade Federal do Rio de Janeiro. 
 
 E como primeira tarefa foi criado o repositório e recomendado o estudo do Markdown.
 
-#Markdown
+# Markdown
 
 Em uma rápida busca na **Wikipedia** encontrei que: 
 
@@ -40,7 +40,7 @@ $$
 $$
 
 * Diagramas UML
-```mermaid
+'''mermaid
 sequenceDiagram
 Alice ->> Bob: Hello Bob, how are you?
 Bob-->>John: How about you John?
@@ -50,21 +50,21 @@ Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text d
 
 Bob-->Alice: Checking with John...
 Alice->John: Yes... John, how are you?
-```
+'''
 
 * Fluxogramas
 
-```mermaid
+'''mermaid
 graph LR
 A[Square Rect] -- Link text --> B((Circle))
 A --> C(Round Rect)
 B --> D{Rhombus}
 C --> D
-```
+'''
 
 [Fonte](https://stackedit.io/app#)
 
 
 #Aplicativo
 
-Durante a pesquisa encontrei o site: https://stackedit.io/app#, que é um bom editor de Markdown e foi utilizado em partes para produzir este primeiro documento. 
+Durante a pesquisa encontrei o site [Stack Edit](https://stackedit.io/app#), que é um bom editor de Markdown e foi utilizado em partes para produzir este primeiro documento. 
