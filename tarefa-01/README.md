@@ -1,8 +1,6 @@
 # Tarefa-01
 
-Este repositório foi criado para divulgar os exercícios realizados para a matéria de Estruturas de Linguagens, realizada em 2019/2 pelo professor Francisco Santanna, na Universidade Federal do Rio de Janeiro. 
-
-E como primeira tarefa foi criado o repositório e recomendado o estudo do Markdown.
+A primeira tarefa foi criado o repositório e recomendado o estudo do Markdown.
 
 ## Markdown
 
