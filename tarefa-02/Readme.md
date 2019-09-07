@@ -32,6 +32,23 @@ Ela nunca quebra. Mesmo que você tenha uma código com erro em alguma linha, o 
 
 Código Elixir é fácil de crescer e manter, e isso significa baixo custo.
 
+Em 1986, a Ericsson já tinha essa necessidade de criar aplicações sem falhas que fossem concorrentes, paralelas e distribuídas, e, naquela circustância não encontraram uma linguagem de programação que atendessem de forma produtiva essa necessidade, por isso, desenvolveram a linguagem de programação de Erlang.
+
+Apesar de ser um projeto open source e resolver de forma efetiva alguns quadros críticos em ambientes distribuídos, a linguagem ainda está longe de alcançar popularidade por diversos motivos, tais como, sintaxe da linguagem, suporte a testes, ausência de tools, etc.
+
+Mas o que o Erlang tem haver com Elixir? Tudo haver. A linguagem de programação Elixir executa na máquina virtual do Erlang que proverá condições para resolver problemas de concorrência e paralelismo e ao mesmo tempo tem um viés moderno com sintaxe mais amigável, suporte a testes, tools, etc.
+
+It’s also an alternative language for the Erlang Virtual Machine (BEAM).
+
+## Linha do tempo e innfluência do Elixir
+
+1958 - Lisp
+1986 - Erlang
+1995 - Ruby
+2011 - Elixir
+
+![](../IMG/timeline.png)
+
 ## Quando escolher Elixir
 Elixir é uma excelente escolha se você quer usar Erlang mas odeia a sintaxe dessa linguagem.
 
@@ -47,11 +64,13 @@ Se você precisa construir aplicações que dependam de muito processamento de n
 Elixir não tem um ecossistema diverso (pelo menos por enquanto). Por exemplo, a quantidade de repositórios para Elixir hoje é de 36.000, enquanto para Ruby é de 1.500.000, e Javascript 5.000.000.
 
 Você pode pensar que Elixir é excelente para paralelismo, mas não é. Ela foi projetada para ter tolerância a falhas, não paralelismo.
+ 
+## What is Erlang
+Erlang is not just a language, Erlang is an open-source, general-purpose development platform.
 
-## Como o Erlang lida com Schedule
+It was built for the telecom industry by Ericsson, and it’s been doing a fantastic since 1986.
 
- http://jlouisramblings.blogspot.com/2013/01/how-erlang-does-scheduling.html
-
+It has built-in support for concurrency (cheap context switching), distribution (executes on different machines), fault tolerance (it recovers from errors), and it prides itself with nine-nines of availability (~31ms downtime/year).
 
 ## Beam Schedule
 
@@ -91,43 +110,70 @@ def hello  "result"end
 Definindo um método em Elixir:
 ~~~
 def hello do  "result"end
+~~~
+
 
 Um Hash em Ruby{a: 1}
-
+~~~
 %{a: 1}
+~~~
 
 Um array em Ruby
+~~~
 [1, 2, 3, 4]
+~~~
 
-Uma tupla em Elixir{1, 2, 3, 4}
+Uma tupla em Elixir
+~~~
+{1, 2, 3, 4}
+~~~
 
 Chamando um método em um objeto em Ruby
-
+~~~
 "hello".reverse
+~~~
 
 Chamando uma função em Elixir
-
+~~~
 String.reverse("hello")
+~~~
 
 Uma lambda em Ruby
+~~~
  -> x { x * x }
- 
- Uma função anônima em Elixir
+~~~
+
+Uma função anônima em Elixir
+~~~
  fn(x) -> x * x end
- 
- Usando uma função each em Ruby
- 
+~~~
+
+Usando uma função each em Ruby
+~~~ 
  [1, 2].each { |i| puts i }
- 
- Usando uma função each em ElixirEnum.each([1, 2], &(IO.puts &1))
- 
- Definindo um módulo em Ruby
- 
- module Exampleend
- 
- Definindo um módulo em Elixir
- 
- defmodule Exampleend
+~~~
+
+Usando uma função each em Elixir
+~~~
+iex(1)> Enum.each([1, 2], &(IO.puts &1))
+1
+2
+:ok
+~~~
+
+Definindo um módulo em Ruby
+~~~
+module Example end
+~~~
+
+Definindo um módulo em Elixir
+~~~ 
+iex(1)> defmodule Example do end
+{:module, Example,
+ <<70, 79, 82, 49, 0, 0, 3, 252, 66, 69, 65, 77, 69, 120, 68, 99, 0, 0, 0, 94,
+   131, 104, 2, 100, 0, 14, 101, 108, 105, 120, 105, 114, 95, 100, 111, 99, 115,
+   95, 118, 49, 108, 0, 0, 0, 4, 104, 2, ...>>, nil}
+~~~
 
 
 ## Características da linguagem
@@ -140,14 +186,13 @@ Metaprogramação permitindo a manipulação direta de árvores sintáticas abst
 Suporte para documentação via docstrings tipo Python na linguagem de formatação Markdown.ref name=<"elixirhome" />
 Polimorfismo via um mecanismo chamado protocolos. Como em Clojure, os protocolos fornecem um mecanismo de ligação dinâmica. No entanto, isso não deve ser confundido com o despacho múltiplo uma vez que os protocolos em Elixir despacham em um único tipo.
 Ênfase na recursão e funções de ordem superior em vez de looping baseado em efeitos colaterais.
-Ferramentas internas para gerenciamento de dependências, compilação de código, execução de testes, formatação de código, depuração remota e muito mais.
-Coleções preguiçosas e assíncronas com streams
-Casamento de padrões (Pattern matching)[5]
+Ferramen## O que é concorrência? internas para gerenciamento de dependências, compilação de código, execução de testes, ## O que é concorrência? atação de código, depuração remota e muito mais.
+Coleções## O que é concorrência? guiçosas e assíncronas com streams
+Casament## O que é concorrência?  padrões (Pattern matching)[5]
 Suporte a Unicode e cadeias UTF-8
 
-## O que é concorrência? 
 
-## Hello World
+## Hello World com Elixir
 Comando "Hello World".
 ~~~
 iex(1)> IO.puts "Hello World!"
@@ -156,7 +201,6 @@ Hello World!
 ~~~
 
 Abrindo um script elixir (.exs)
-
 ~~~
 'elixir hello.exs 
 Hello world from Elixir'
@@ -279,9 +323,7 @@ Reference modules
   List
 ~~~
 
-## Ajuda
-
-Para se ter ajuda de qualquer comando, função ou variável, basta colocar o h antes.
+Para se ter *ajuda* de qualquer comando, função ou variável, basta colocar o h antes.
 
 Ex:
 ~~~
@@ -389,138 +431,296 @@ Pode ser dado um timeout de 0, quando já se espera que tenha uma mensagem no ma
 
 Agora colocando tudo junto e enviando mensagens entre processos:
 
+~~~
+iex(1)> parent = self()
+#PID<0.83.0>
+iex(2)> spawn fn -> send(parent, {:hello, self()}) end
+#PID<0.108.0>
+iex(13)> receive do
+...(13)>  {hello, pid} -> "Got hello from #{inspect pid}"
+...(13)> end
+"Got hello from #PID<0.108.0>"
+~~~
 
+A função *inspect/1* é usada para converter representações de estrutura de dados internas em uma string, para que possa ser impressa na tela. Note que quando o *receive block* é executado o processo de envio que é criado já está morto, pois sua única instrução é enviar uma mensagem. 
 
+Pode-se utilizar o *flush/0* para colocar na tela todas as mensagens do mailbox:
 
-iex> parent = self()
-#PID<0.41.0>
-iex> spawn fn -> send(parent, {:hello, self()}) end
-#PID<0.48.0>
-iex> receive do
-...>   {:hello, pid} -> "Got hello from #{inspect pid}"
-...> end
-"Got hello from #PID<0.48.0>"
-The inspect/1 function is used to convert a data structure’s internal representation into a string, typically for printing. Notice that when the receive block gets executed the sender process we have spawned may already be dead, as its only instruction was to send a message.
-
-While in the shell, you may find the helper flush/0 quite useful. It flushes and prints all the messages in the mailbox.
-
-iex> send self(), :hello
+~~~
+iex(1)> send self(), :hello
 :hello
-iex> flush()
+iex(2)> flush()
 :hello
 :ok
-Links
-The majority of times we spawn processes in Elixir, we spawn them as linked processes. Before we show an example with spawn_link/1, let’s see what happens when a process started with spawn/1 fails:
+~~~
 
-iex> spawn fn -> raise "oops" end
-#PID<0.58.0>
 
-[error] Process #PID<0.58.00> raised an exception
-** (RuntimeError) oops
-    (stdlib) erl_eval.erl:668: :erl_eval.do_apply/6
-It merely logged an error but the parent process is still running. That’s because processes are isolated. If we want the failure in one process to propagate to another one, we should link them. This can be done with spawn_link/1:
+*Ligações* (Links)
+A a maioria das vezes que criamos processos no Elixir, nós os criamos como processos ligados. (linked processes). Para isso usamos um *spawn_link/1* .
 
-iex> self()
-#PID<0.41.0>
-iex> spawn_link fn -> raise "oops" end
+Mas antes é legal entender o que acontece com o processo que falha:
 
-** (EXIT from #PID<0.41.0>) evaluator process exited with reason: an exception was raised:
-    ** (RuntimeError) oops
+~~~
+iex(1)> pid = spawn fn -> raise "error" end
+#PID<0.121.0>
+iex(2)> 
+$time $metadata[$level] $levelpad$message
+~~~
+
+Quando executado o erro é mostrado na tela, mas o processo pai parece continuar rodando. Isto ocorre por causa dos processos serem de fato isolados. Se quisermos que em caso de falha de um processo, seja propagada para um outro, é preciso ligá-los. E isto pode ser feito com *spawn_link/1:*:
+~~~
+iex(1)> self()
+#PID<0.83.0>
+iex(2)> spawn_link fn -> raise "erro" end
+** (EXIT from #PID<0.83.0>) an exception was raised:
+    ** (RuntimeError) erro
         (stdlib) erl_eval.erl:668: :erl_eval.do_apply/6
 
-[error] Process #PID<0.289.0> raised an exception
-** (RuntimeError) oops
-    (stdlib) erl_eval.erl:668: :erl_eval.do_apply/6
-Because processes are linked, we now see a message saying the parent process, which is the shell process, has received an EXIT signal from another process causing the shell to terminate. IEx detects this situation and starts a new shell session.
+$time $metadata[$level] $levelpad$message
+ 
+Interactive Elixir (1.3.3) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)> 
+~~~
 
-Linking can also be done manually by calling Process.link/1. We recommend that you take a look at the Process module for other functionality provided by processes.
+Como os processos estão ligados, ao executar o erro, aparece uma mensagem dizendo que o processo pai, que no caso era o shell do Elixir, recebeu um sinal de EXIT de outro processo, e desta forma encerrando o shell. E o IEx detecta essa situação e inicia uma nova seção. 
 
-Processes and links play an important role when building fault-tolerant systems. Elixir processes are isolated and don’t share anything by default. Therefore, a failure in a process will never crash or corrupt the state of another process. Links, however, allow processes to establish a relationship in case of failure. We often link our processes to supervisors which will detect when a process dies and start a new process in its place.
+A ligação pode ser feita manualmente também ao chamar o processo, usando o *link/1*. É recomendado olhar o módulo do processo para outras funcionalidades fornecidas pelo processo. 
 
-While other languages would require us to catch/handle exceptions, in Elixir we are actually fine with letting processes fail because we expect supervisors to properly restart our systems. “Failing fast” is a common philosophy when writing Elixir software!
+Processos e ligações, tem um importante papel quando se constrói sistemas tolerante a falhas. Como dito os processos do Elixir são isolados e não compartilham nada por padrão. Portanto uma falha em um processo nunca irá dar crash ou corromper o estado de um outro processo. Os links no entanto, permite que processos estabeleçam um relacionamento em caso de falha. Por tanto, normalmente ligam se processos a proecssos supervisores que podem detecta quando o processo morre e iniciar um novo processo no lugar. 
 
-spawn/1 and spawn_link/1 are the basic primitives for creating processes in Elixir. Although we have used them exclusively so far, most of the time we are going to use abstractions that build on top of them. Let’s see the most common one, called tasks.
+Enquanto outras linguages precisam que lide que faça *catch/handle* em exceções. No Elixir,não há problemas em deixar os processos falharem, pois é experado que os processos supervisórios, permitam reiniciar o sistema. O "falhar rápido" é uma filosofia comum ao desenvolver softwares em Elixir.
 
-Tasks
-Tasks build on top of the spawn functions to provide better error reports and introspection:
+O *spawn/1* e *spawn_link/1* são comandos primitivos e básicos para criar processos no Elixir. Na maioria das vezes vamos usar abstrações que são construídas sobre elas, como por exemplo o chamado *tasks*.
 
-iex(1)> Task.start fn -> raise "oops" end
-{:ok, #PID<0.55.0>}
+Os *Tasks* ou tarefas, são construídas sobre as funções *spawn* para fornecer um relatório de erro melhorRuby e instrospecção. 
+~~~
+iex(1)> Task.start fn -> raise "erro" end
+{:ok, #PID<0.131.0>}
+iex(2)> 
+$time $metadata[$level] $levelpad$message
 
-15:22:33.046 [error] Task #PID<0.55.0> started from #PID<0.53.0> terminating
-** (RuntimeError) oops
-    (stdlib) erl_eval.erl:668: :erl_eval.do_apply/6
-    (elixir) lib/task/supervised.ex:85: Task.Supervised.do_apply/2
-    (stdlib) proc_lib.erl:247: :proc_lib.init_p_do_apply/3
-Function: #Function<20.99386804/0 in :erl_eval.expr/5>
-    Args: []
-Instead of spawn/1 and spawn_link/1, we use Task.start/1 and Task.start_link/1 which return {:ok, pid} rather than just the PID. This is what enables tasks to be used in supervision trees. Furthermore, Task provides convenience functions, like Task.async/1 and Task.await/1, and functionality to ease distribution.
+~~~
 
-We will explore those functionalities in the Mix and OTP guide, for now it is enough to remember to use Task to get better error reports.
+Ao invés de *spawn/1* e *spawn_link/1*, usa-se o *Task.start/1* e o *Task.start_link/1*, que retorna {:ok, pid}, ao invés de apenas o PID. 
+Isso é o que permite as taregas seren usada em árvores de supervisão. 
+Além disso, *Task* fornece funções convenientes, como *Task.async/1* , o *Task.await/1* e funcionalidades que facilitam a distribuição. 
 
-State
-We haven’t talked about state so far in this guide. If you are building an application that requires state, for example, to keep your application configuration, or you need to parse a file and keep it in memory, where would you store it?
+A funcionalidade *state* (estado), é a forma que se tem para construir aplicações que permitem gravar um estado, manter uma configuração, ou gravar um arquivo em memória. 
 
-Processes are the most common answer to this question. We can write processes that loop infinitely, maintain state, and send and receive messages. As an example, let’s write a module that starts new processes that work as a key-value store in a file named kv.exs:
+É possível criar processos que fiquem em loop infinitamente, mantendo um estado, enviando e recebendo mensagens. Por exemplo, é possível criar um módulo que inicia um novo processo que trabalha com o armazenamento de chaves e valores e armazena em um arquivo. 
+~~~
+iex(3)> defmodule KV do
+...(3)>   def start_link do
+...(3)>     Task.start_link(fn -> loop(%{}) end)
+...(3)>   end
+...(3)> 
+...(3)>   defp loop(map) do
+...(3)>     receive do
+...(3)>       {:get, key, caller} ->
+...(3)>         send caller, Map.get(map, key)
+...(3)>         loop(map)
+...(3)>       {:put, key, value} ->
+...(3)>         loop(Map.put(map, key, value))
+...(3)>     end
+...(3)>   end
+...(3)> end
+{:module, KV,
+ <<70, 79, 82, 49, 0, 0, 6, 224, 66, 69, 65, 77, 69, 120, 68, 99, 0, 0, 0, 133,
+   131, 104, 2, 100, 0, 14, 101, 108, 105, 120, 105, 114, 95, 100, 111, 99, 115,
+   95, 118, 49, 108, 0, 0, 0, 4, 104, 2, ...>>, {:loop, 1}} 
+~~~
 
-defmodule KV do
-  def start_link do
-    Task.start_link(fn -> loop(%{}) end)
-  end
+Neste código, a função start_link, iniciar um novo processo que roda a função *loop/1*, a qual inicia com um mapa vazio. O *loop/1* (private) espera por mensagens e executa a ação correta de acordo com a mensagem. A função *loop/1* é privada, pois usou-se o *defp* ao invés de *def*. No caso de receber a mensagem *:get*, ele envia a mensagem de volta para que está chamando e a função *loop/1* é novamente chamada, esperando uma nova mensagem. Enquanto a mensagem *:put* chama a *loop/1* com uma nova versão do mapa, com os calores e chave armazenados. 
 
-  defp loop(map) do
-    receive do
-      {:get, key, caller} ->
-        send caller, Map.get(map, key)
-        loop(map)
-      {:put, key, value} ->
-        loop(Map.put(map, key, value))
-    end
-  end
-end
-Note that the start_link function starts a new process that runs the loop/1 function, starting with an empty map. The loop/1 (private) function then waits for messages and performs the appropriate action for each message. We made loop/1 private by using defp instead of def. In the case of a :get message, it sends a message back to the caller and calls loop/1 again, to wait for a new message. While the :put message actually invokes loop/1 with a new version of the map, with the given key and value stored.
+Agora rodando a função kv.
 
-Let’s give it a try by running iex kv.exs:
-
-iex> {:ok, pid} = KV.start_link
-{:ok, #PID<0.62.0>}
-iex> send pid, {:get, :hello, self()}
-{:get, :hello, #PID<0.41.0>}
-iex> flush()
+~~~
+iex(1)> {:ok, pid} = KV.start_link
+{:ok, #PID<0.153.0>}
+iex(2)> send pid, {:get, :hello, self()}
+{:get, :hello, #PID<0.129.0>}
+iex(3)> flush()
 nil
-:ok
-At first, the process map has no keys, so sending a :get message and then flushing the current process inbox returns nil. Let’s send a :put message and try it again:
+:okRuby
+~~~
 
-iex> send pid, {:put, :hello, :world}
+Primeiro o processo map não tem chaves e depois envia a mensagem *:get* e descarrega o inbox atual que é "nulo". Caso queira enviar novamente uma mensagem *:put*
+
+~~~
+iex(4)> send pid, {:put, :hello, :world}
 {:put, :hello, :world}
-iex> send pid, {:get, :hello, self()}
-{:get, :hello, #PID<0.41.0>}
-iex> flush()
+iex(5)> send pid, {:get, :hello, self()}
+{:get, :hello, #PID<0.129.0>}
+iex(6)> flush()
 :world
 :ok
-Notice how the process is keeping a state and we can get and update this state by sending the process messages. In fact, any process that knows the pid above will be able to send it messages and manipulate the state.
+~~~
 
-It is also possible to register the pid, giving it a name, and allowing everyone that knows the name to send it messages:
+Neste exemplo, pode-se ver que o estado é mantido e pode-se pegar e atualizar esse estado enviando mensagens para o processo. De fato, qualquer processo que conheça o PID poderá enviar mensagens e manipular seu estado. 
 
-iex> Process.register(pid, :kv)
+Também é possível registrar o PID, dado a ele um nome, que permita a qualquer um que o conheça enviar mensagem. 
+
+~~~ 
+iex(7)> Process.register(pid, :kv)
 true
-iex> send :kv, {:get, :hello, self()}
-{:get, :hello, #PID<0.41.0>}
-iex> flush()
+iex(8)> send :kv, {:get, :hello, self()}
+{:get, :hello, #PID<0.129.0>}
+iex(9)> flush()
 :world
 :ok
-Using processes to maintain state and name registration are very common patterns in Elixir applications. However, most of the time, we won’t implement those patterns manually as above, but by using one of the many abstractions that ship with Elixir. For example, Elixir provides agents, which are simple abstractions around state:
+~~~
 
-iex> {:ok, pid} = Agent.start_link(fn -> %{} end)
-{:ok, #PID<0.72.0>}
-iex> Agent.update(pid, fn map -> Map.put(map, :hello, :world) end)
+Usando processos para manter o estado e o nome registrado, são padrões comuns nas apliacações em Elixir. No entando, na maiora das vezes, não iremos implementear esses padrões, manualmente, mas usar alguma abstração do Elixir. Por exemplo, como a abstração do *state*:
+
+~~~
+iex(1)> {:ok, pid} = Agent.start_link(fn ->%{} end)
+{:ok, #PID<0.163.0>}
+iex(2)> Agent.update(p
+pid/1         pid/3         pop_in/1      pop_in/2      put_elem/3    
+put_in/2      put_in/3      pwd/0         
+iex(3)> Agent.update(pid, fn map -> Map.put(map, :hello, :world) end)
 :ok
-iex> Agent.get(pid, fn map -> Map.get(map, :hello) end)
+iex(4)> Agent.get(pid, fn map-> Map.get(map, :hello) end) 
 :world
-A :name option could also be given to Agent.start_link/2 and it would be automatically registered. Besides agents, Elixir provides an API for building generic servers (called GenServer), tasks, and more, all powered by processes underneath. Those, along with supervision trees, will be explored with more detail in the Mix and OTP guide which will build a complete Elixir application from start to finish.
+~~~
 
+A opção *:name:* pode ser dada ao *Agent.start_link/2* e será automaticamente registrada. Atrás do agentes, o Elixir possui uma API para criar servidores genéricos (GenServer), tarefas e mais, tudo alimentado por processos ocultos. 
 
-## Concorrência
+Exemplo do disparo de 100 processos sequenciais em Elixir:
+
+~~~
+iex(1)> for num <- 1..100, do: spawn fn -> IO.puts("#{num * 2}") end 
+2
+4
+6
+10
+8
+12
+14
+18
+16
+20
+22
+24
+26
+28
+30
+32
+34
+36
+38
+40
+42
+44
+46
+48
+50
+52
+54
+56
+58
+60
+62
+64
+66
+68
+70
+72
+74
+76
+78
+82
+80
+84
+86
+88
+90
+92
+94
+96
+98
+100
+104
+102
+106
+108
+110
+112
+114
+116
+118
+120
+122
+124
+126
+128
+130
+132
+134
+136
+138
+140
+144
+142
+146
+148
+150
+152
+154
+156
+158
+160
+162
+164
+166
+168
+170
+172
+174
+176
+178
+180
+182
+184
+186
+188
+190
+192
+194
+196
+198
+200
+[#PID<0.1087.0>, #PID<0.1088.0>, #PID<0.1089.0>, #PID<0.1090.0>, #PID<0.1091.0>,
+ #PID<0.1092.0>, #PID<0.1093.0>, #PID<0.1094.0>, #PID<0.1095.0>, #PID<0.1096.0>,
+ #PID<0.1097.0>, #PID<0.1098.0>, #PID<0.1099.0>, #PID<0.1100.0>, #PID<0.1101.0>,
+ #PID<0.1102.0>, #PID<0.1103.0>, #PID<0.1104.0>, #PID<0.1105.0>, #PID<0.1106.0>,
+ #PID<0.1107.0>, #PID<0.1108.0>, #PID<0.1109.0>, #PID<0.1110.0>, #PID<0.1111.0>,
+ #PID<0.1112.0>, #PID<0.1113.0>, #PID<0.1114.0>, #PID<0.1115.0>, #PID<0.1116.0>,
+ #PID<0.1117.0>, #PID<0.1118.0>, #PID<0.1119.0>, #PID<0.1120.0>, #PID<0.1121.0>,
+ #PID<0.1122.0>, #PID<0.1123.0>, #PID<0.1124.0>, #PID<0.1125.0>, #PID<0.1126.0>,
+ #PID<0.1127.0>, #PID<0.1128.0>, #PID<0.1129.0>, #PID<0.1130.0>, #PID<0.1131.0>,
+ #PID<0.1132.0>, #PID<0.1133.0>, #PID<0.1134.0>, #PID<0.1135.0>, #PID<0.1136.0>,
+ ...]
+
+~~~
+
+## Programação Concorrente e paralela
+
+Hoje processadores novos não saem mais de fábrica com apenas um núcleo, temos dual-, quad- hexa-, octo- e 12-core.  E o uso desta alta capacidade de processamento paralelo é um dos principais desafios que a maioria das linguagens atuais tenta resolver. Pois muitas vezes não é possível, lidar com isso de maneira adequada ou então é muito difícil gerir programação paralela de forma a utilizar todos os cores disponíveis. O Elixr como opera sobre um máquina virtual naturalmente projetada para lidar com concorrência, permitindo assim extrair o máximo potencial do hardware onde o programa está sendo executado. A execução paralela é um pouco diferente de exedcução concorrente. O paralelismo significa que duas ou mais tarefas são livres para executar ao mesmo tempo. Também não há necessidade de interromper nenhuma delas par que outras possam prosseguir, salvo em casos em que isso é feito de forma intencional. Já a execução concorrete é quando duas ou mais tarefas também parecem ser executadas ao mesmo tempo, mas o processador poderia estar rapidamente trocando o foco entre elas, interrompendo uma para que outras possam continuar. Ele fazer essa troca de forma tão rápida que tudo parece estar sendo executado ao mesmo tempo, mas na verdade não está .O processador de um núclo é um bom exemplo, que age trocando as tarefas tão rapidamente que parece que são executadas ao mesmo tempo. Entretando na verdade, ele cria cache de uma, executa outra, interrompe uma e vai executando outras sucessivamente. Ao adicionar mais núcloes a este processador ele estará apto a executar processos em paralelo, mas asinda assim ele poderá continuar executando todas as tarefas concorrentemente se os núcleos extras não forem usadas. 
+
+CONCORRÊNCIA E PARALELISMO
+Pode parecer a mesma coisa, mas não é. Vamos as definições:
+
+PARALELISMO
+Acontece quando duas ou mais tarefas são executadas, literalmente, ao mesmo tempo. Necessita, obvRubyiamente, de um processador com múltiplas cores, ou múltiplos processadores para que mais de um processo ou thread seja executado ao mesmo tempo.
+
+CONCORRÊNCIA
+Quando duas ou mais tarefas podem começar a ser executadas e terminar em espaços de tempo que se sobrepõem, não significando que elas precisam estar em execução necessariamente no mesmo instante. Ou seja, você tem concorrência quando:
+
+mais de uma tarefa progride ao mesmo tempo em um ambiente com múltiplos CPUs/núcleos;
+ou no caso de um ambiente single core, duas ou mais tarefas podem não progredir no mesmo exato momento, mas mais de uma tarefa é processada em um mesmo intervalo de tempo, não esperando que uma tarefa termine por completo antes de dar início a outra.
+É a possibilidade do processador executar instruções ao mesmo tempo que outras operações, como, por exemplo I/O, permitindo que tarefas sejam executadas concorrentemente pelo sistema. A concorrência é o princípio básico para permitir o projeto e implementação de sistemas multitarefas.
+
 
 ## Comparação com C#/C/Java/Ruby
 
@@ -530,3 +730,12 @@ A :name option could also be given to Agent.start_link/2 and it would be automat
 - https://pt.wikipedia.org/wiki/Elixir_(linguagem_de_programa%C3%A7%C3%A3o)
 - https://elixir-lang.org/getting-started/processes.html
 - https://medium.com/full-stack-tips/a-gentle-introduction-to-elixir-1da9261bae72
+- https://videosdeti.com.br/por-que-voce-tambem-deve-aprender-elixir/
+- https://elixirschool.com/pt/lessons/basics/basics/
+- http://zonov.me/go-for-rubyists-part-8-concurrency-ruby-go-elixir/
+- DAVI, Tiago. Elixir: Do zero à concorrência.São Paulo:Editora Caso do Código.2017.
+- https://lucassimon.com.br/2018/06/um-caminho-para-aprender-elixir/
+- http://www.tiagobarreto.com/comecando-com-elixir-e-phoenix/
+- http://jlouisramblings.blogspot.com/2013/01/how-erlang-does-scheduling.html
+- https://diogommartins.wordpress.com/2017/04/07/concorrencia-e-paralelismo-threads-multiplos-processos-e-asyncio-parte-1/
+- https://en.wikipedia.org/wiki/Elixir_(programming_language)
