@@ -36,18 +36,26 @@ Hello World!
 :ok
 ~~~
 
-'iex> for n <- [1,2,3,4,5], rem(n,2) == 1, do: n*n[1, 9, 25]'
+~~~
+iex> for n <- [1,2,3,4,5], rem(n,2) == 1, do: n*n[1, 9, 25]'
+~~~
 
+~~~
 'iex> [1, a] = [1, 2]
 iex> a2'
+~~~
 
+~~~
 'iex> {:ok, [hello: a]} = {:ok, [hello: "world"]}
 "world"'
+~~~
 
 Abrindo um script elixir (.exs)
 
+~~~
 'elixir hello.exs 
 Hello world from Elixir'
+~~~
 
 
 
