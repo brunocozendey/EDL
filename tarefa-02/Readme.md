@@ -2,7 +2,7 @@
 
 ## Introdução
 
-** Elixir é uma linguagem de programação funcional, concorrente, de propósito geral que executa na máquina virtual Erlang (BEAM). Elixir compila em cima de Erlang para fornecer aplicações distribuídas, em tempo real suave, tolerante a falhas, non-stop, mas também a estende para suportar metaprogramação com macros e polimorfismo via protocolos.[3]
+**Elixir** é uma linguagem de programação funcional, concorrente, de propósito geral que executa na máquina virtual Erlang (BEAM). Elixir compila em cima de Erlang para fornecer aplicações distribuídas, em tempo real suave, tolerante a falhas, non-stop, mas também a estende para suportar metaprogramação com macros e polimorfismo via protocolos.[3]
 
 
 Elixir é usada por empresas como E-MetroTel, Pinterest e Moz. Também é usada para desenvolvimento web, por empresas como Bleacher Report, Discord e Inverse, e para a construção de sistemas embarcados. A comunidade organiza eventos anuais nos Estados Unidos, Europa e Japão, além de eventos e conferências locais menores.
@@ -29,11 +29,12 @@ Suporte a Unicode e cadeias UTF-8
 ## O que é concorrência? 
 
 ## Hello World
-'
+Comando "Hello World".
+~~~
 iex> IO.puts "Hello World!"
 Hello World!
 :ok
-'
+~~~
 
 'iex> for n <- [1,2,3,4,5], rem(n,2) == 1, do: n*n[1, 9, 25]'
 
