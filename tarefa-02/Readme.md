@@ -40,12 +40,12 @@ Mas o que o Erlang tem haver com Elixir? Tudo haver. A linguagem de programaçã
 
 It’s also an alternative language for the Erlang Virtual Machine (BEAM).
 
-## Linha do tempo e innfluência do Elixir
+## Linha do tempo e influência do Elixir
 
-1958 - Lisp
-1986 - Erlang
-1995 - Ruby
-2011 - Elixir
+- 1958 - Lisp
+- 1986 - Erlang
+- 1995 - Ruby
+- 2011 - Elixir
 
 ![](../IMG/timeline.png)
 
@@ -58,7 +58,7 @@ Parece haver uma tendência hoje de se construir sistemas de chats, e isso o Eli
 
 Como falado anteriormente, sistemas altamente confiáveis são também onde o Elixir brilha. Se você precisa de uma aplicação disponível o tempo todo, Elixir é provavelmente sua melhor escolha.
 
-##Quando NÃO escolher Elixir
+## Quando NÃO escolher Elixir
 Se você precisa construir aplicações que dependam de muito processamento de números, Elixir pode não ser sua melhor escolha. Nesse caso talvez seja melhor escolher uma linguagem como C ou C++, que são melhores para cálculos intensivos na CPU.
 
 Elixir não tem um ecossistema diverso (pelo menos por enquanto). Por exemplo, a quantidade de repositórios para Elixir hoje é de 36.000, enquanto para Ruby é de 1.500.000, e Javascript 5.000.000.
