@@ -47,7 +47,7 @@ It’s also an alternative language for the Erlang Virtual Machine (BEAM).
 - 1995 - Ruby
 - 2011 - Elixir
 
-![](../IMG/timeline.png)
+![Time line linguagens](https://github.com/brunocozendey/EDL/blob/master/tarefa-02/IMGS/timeline.png)
 
 ## Quando escolher Elixir
 Elixir é uma excelente escolha se você quer usar Erlang mas odeia a sintaxe dessa linguagem.
