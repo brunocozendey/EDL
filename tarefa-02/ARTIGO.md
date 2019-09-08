@@ -198,7 +198,7 @@ Ex:
 ~~~
 iex(1)> h round
 
-                               def round(number)                                
+def round(number)                                
 
 Rounds a number to the nearest integer.
 
@@ -246,7 +246,7 @@ Os processos do Elxir não devem ser confundidos com os processos de um sistema 
 
 As principais funções para lidar com processos são:
 
-- spawn/1 (criar)
+- *spawn/1* (criar)
 
 Que é o mecanismo básico de criação de um novo processo.
 Exemplo:
@@ -420,7 +420,7 @@ iex(2)> receive do
 "world"
 ~~~
 
-Quando a mensagem é enviado para o processo, ela é armazenada num processo denominado *mailbox*, mas não bloqueia o *send*, continua executando. O send permite também enviar mensagem para o próprio processo emissor.
+Quando a mensagem é enviada para o processo, ela é armazenada num processo denominado *mailbox*, mas não bloqueia o *send*, continua executando. O send permite também enviar mensagem para o próprio processo emissor.
 Já a função *receive*, vai até o processo mailbox atual procurando por uma mensagem que recebeu como argumento. 
 
 O *receive* suporta sentinela e muitas outras funções como o *case/2*.
@@ -606,18 +606,14 @@ https://www.youtube.com/watch?v=pO4_Wlq8JeI
 
 
 ## Elixir vs Ruby
-A primeira coisa que eu gostaria de mencionar como princípio geral é que você não deve fazer tudo em uma única linguagem. Você não deve escolher uma “melhor” linguagem. Cada linguagem tem os seus pros e contras.
 
-Elixir não é uma versão melhorada do Ruby. Ela não é uma substituta do Ruby. Ela é uma nova linguagem com objetivos diferentes.
+Comparada ao Ruby, Elixir oferece uma melhor performance, visto que é uma linguagem compilada, possui melhor escalabilidade e alta disponibilidade, já que o processo nunca para, se não tiver relação com o que apresentou erro. 
 
-Comparada ao Ruby, Elixir oferece uma melhor performance, visto que é uma linguagem compilada, possui melhor escalabilidade e alta disponibilidade.
+O código que você escreve em Elixir é muito explícito, ou seja, é menos mágico, se comparado ao Ruby.
 
-O código que você escreve em Elixir é muito explícito, ou seja, é menos mágico. Eu acho isso muito refrescante, vindo do mundo Ruby.
+E o principal recurso do Elixir é que ela usa todos do cores da CPU, ou seja, você pode rodar testes realmente em paralelo, e em processos independentes, realmente concorrentes.
 
-E o principal recurso, na minha opinião, é que ela usa todos do cores da CPU, ou seja, você pode rodar testes em paralelo (de verdade!).
-
-Vamos ver alguns exemplos de código Ruby e Elixir.
-
+Alguns exemplos de código Ruby e Elixir.
 
 Definindo um método em Ruby:
 ~~~
@@ -628,7 +624,6 @@ Definindo um método em Elixir:
 ~~~
 def hello do  "result"end
 ~~~
-
 
 Um Hash em Ruby{a: 1}
 ~~~
@@ -689,21 +684,22 @@ iex(1)> defmodule Example do end
 {:module, Example,
  <<70, 79, 82, 49, 0, 0, 3, 252, 66, 69, 65, 77, 69, 120, 68, 99, 0, 0, 0, 94,
    131, 104, 2, 100, 0, 14, 101, 108, 105, 120, 105, 114, 95, 100, 111, 99, 115,
-   95, 118, 49, 108,alta capacidade de processamento paralelo é um dos principais desafios que a maioria das linguagens atuais tenta resolver. Pois muitas vezes não é possível, lidar com isso de maneira adequada ou então é muito difícil gerir programação paralela de forma a utilizar todos os cores disponíveis. Como já visto o Elixr como opera sobre um máquina virtual naturalmente projetada para lidar com concorrência, permitindo assim extrair o máximo potencial do hardware onde o programa está sendo executado, tendo vantagem se comparado a outras linguagens. 0, 0, 0, 4, 104, 2, ...>>, nil}
+   95, 118, 49, 108,0, 0, 0, 4, 104, 2, ...>>, nil}
 ~~~
 
-## Comparação Threads Elixir x Ruby
+## Comparação concorrência entre Elixir x Ruby
 
-Elixir
-Elixir is a programming language, built on the Erlang VM and heavily influenced by Ruby. So it has all the concurrency advantages of Erlang, but Ruby-like expressive syntax.
+Como visto o Elixir, nasceu sob uma plataforma preparada para programação concorrente que é a Erlang VM e foi inspirada na linguagem Ruby. Portanto une o melhor dos dois mundos que são as vantagens de concorrência do Erlang, com a expressividade da sintax do Ruby.
 
-Concurrency model
-Elixir incorporates totally different concurrency model, which says “share nothing”. So no shared memory, no shared queue to take a data from. Its model name is “Actor model”. Basically, it means that every process operates on its own and can interact with any other process with the known id by sending a message to it.
-As for the developer, it means that no GIL exists, and inter-process communication is easily possible. Just one thing to notice, processes I’m talking about here are not OS processes which you think about, but OTP processes, which is a way lighter alternative.
+O modelo de concorrência do Elixir é toltamente diferente, é o chamado "share nothing", ou seja, nada compartilhado. Isto é, sem memória e nem fila de dados compartilhadas. 
+ 
+Isso significa que cada processo opera indenpendentemente e pode interagir com outros processos que tenha o ID conhecido, enviando mensagens para eles, a comunicação entre processos é fácil. 
+
+Abaixo é possível ver o fluxo dos processos em Elixir, onde tudo é independente e um provesso não influencia em outro. 
 
 ![](https://github.com/brunocozendey/EDL/blob/master/tarefa-02/IMGS/MultithreadElixir.png)
 
-Exemplo
+Exemplo de concorrência em Elixir:
 
 ~~~
 defmodule NumberPrinter do
@@ -720,7 +716,7 @@ Enum.each 1..5, fn(thread_number) ->
 end
 ~~~
 
-O exemplo retornará algo do tipo:
+Que retorna algo do tipo:
 ~~~
 Thread: 4, number: 1
 Thread: 3, number: 1
@@ -750,24 +746,18 @@ Thread: 3, number: 5
 Thread: 2, number: 5
 ~~~
 
+A concorrência no *Ruby*, no início, não era real, haviam apenas as chamadas "green threads", que eram executadas na mesma thread. A linguagem hoje, apesar de não ter threads nativas, o Ruby através do Global Interpreter Lock (GIL). O que é perfeito para soluções, quando se trabalha apenas com processadores de um core, pois mesmo tendo mais de um, GIL permanece sendo apenas um e não aproveita tanto das vantagens dos multi-processadores. 
 
-![](https://github.com/brunocozendey/EDL/blob/master/tarefa-02/IMGS/MultithreadJava.gif)
+A comunidade Ruby, tem trabalhado, em soluções menos segura, porém viabilizando modelos de concorrência e desenvolvendo o chamado Actor Model, em Ruby. 
 
+A comunicação entre threads no Ruby, é feita através de uma solução interna, que é a "Queue Class". Onde a comunicação é compartilhada, através de todas as threads criadas, que podem pegar objetos da fila e também removê-los de lá. Portanto, não se pode enviar objetos diretamente entre uma thread e outra, é necessário usar a fila, filtrando manualmente ou tendo múltiplas filas em cada processo. 
 
-Ruby MRI
-If you’re working with Ruby, you most likely know that not such a long time ago Ruby didn’t have “real” threads at all. The only threads we had were “green threads”. Which are still executed in the same thread, so they are not really threads, but it’s too early to blame Ruby! We now have native threads, but using GIL, which stands for Global Interpreter Lock. It is a perfect solution, when you want to use only one processor core. Because even if you have more, GIL is still one and it doesn’t really leverage the multi-processor advantages.
-Also, speaking about the future of Ruby, the community and Matz himself started moving towards having less safe, but more viable concurrency models and apparently we will see the Actor model in Ruby.
-
-Ruby inter-thread communication
-Sometimes you want your threads to exchange some data, e.g. if your thread intended to run some other threads, which can then be waiting for some data be computed somewhere else and react only then. Ruby has a built-in solution for this, which is the Queue class. It is shared among all threads you spawn and thread can take an object from the queue and remove it from there. I know, it’s not ideal, since you cannot “send” object to a specific thread really, only by manual filtering or having multiple queues per process, which is not so bad actually. However as we will see further, there are more useful interaction models.
+A baixo segue o modelo de como funcionam as threads em Ruby:
 
 ![](https://github.com/brunocozendey/EDL/blob/master/tarefa-02/IMGS/MultithreadRuby.png)
 
-Fibers
-Fibers are even more light-weight concurrency abstraction than threads. The main difference is that they are managed only by a developer. So you can manually start, stop and resume them, without the VM.
 
-Example
-An example of how the simplest Ruby app with threads may look like:
+Abaixo um exemplo de app em Ruby com threads:
 
 ~~~
 def print_numbers(thread_number)
@@ -782,8 +772,7 @@ end
 end
 ~~~
 
-It will print something similar to:
-
+E o resultado do que será impresso. 
 ~~~
 "Thread: 5, number: 1"
 "Thread: 0, number: 1"
@@ -799,7 +788,10 @@ It will print something similar to:
 
 
 ## Conclusão
-alta capacidade de processamento paralelo é um dos principais desafios que a maioria das linguagens atuais tenta resolver. Pois muitas vezes não é possível, lidar com isso de maneira adequada ou então é muito difícil gerir programação paralela de forma a utilizar todos os cores disponíveis. Como já visto o Elixr como opera sobre um máquina virtual naturalmente projetada para lidar com concorrência, permitindo assim extrair o máximo potencial do hardware onde o programa está sendo executado, tendo vantagem se comparado a outras linguagens.
+
+O Elixir apesar de ser uma linguagem relativamente nova, vem ganhando muito espaço no mercado. Por operar sobre um máquina virtual naturalmente projetada para lidar com concorrência, permite extrair o máximo potencial do hardware onde o programa está sendo executado. Gerando com isso uma alta capacidade de processamento paralelo, sendo pouco susetível à falhas, consequentemente conseguindo enfrentar um dos grandes desafios que a maioria das linguagens atuais tenta resolver, que é lidar com o processamento paralelo de maneira adequada ou gerir a programação paralela de forma a utilizar todos os cores disponíveis.  
+
+Com isso, tem tido uma aderência muito grande para uso em backends, principalmente em serviços Web, que precisam de uma alta disponibilidade, escalabilidade, e por possuir uma clareza e expressividade no código superior a outras linguanges como o próprio Erlang e o Ruby como vimos no exemplo acima, se tornando uma linguagem de baixo custo e fácil manutenção.
 
 
 ## Bibliografia
