@@ -4,7 +4,7 @@
 
 **Elixir** é uma linguagem brasileira, desenvolvida por José Valim (que veio da comunidade Ruby), como resultado de um projeto de Pesquisa da empresa Plataformatec a quel ele é um dos fundadores.
 
-O Elixir éuma linguagem de programação funcional, concorrente, de propósito geral, que tem como objetivo permitir uma maior extensibilidade e produtividade, que é executada dentro de máquina virtual Erlang (BEAM), mantendo a compatibilidade com ferramentas e ecossistema de Erlang.
+O Elixir é uma linguagem de programação funcional, concorrente, de propósito geral, que tem como objetivo permitir uma maior extensibilidade e produtividade, que é executada dentro de máquina virtual Erlang (BEAM), mantendo a compatibilidade com ferramentas e ecossistema de Erlang.
 
 A plataform de código aberto Erlang foi desenvolvida em 1986, pela Ericsson, pois naquela circustância não encontraram uma linguagem de programação que atendessem de forma produtiva suas necessidades que era de criar aplicações sem falhas, que fossem concorrentes, paralelas e distribuídas e de alta disponibilidade (~31ms de downtime/ano).
 
@@ -220,11 +220,13 @@ Hoje processadores novos não saem mais de fábrica com apenas um núcleo, temos
 
 A concorrência e o paralelismo podem parecer parecer a mesma coisa, mas não são. Vamos as definições:
 
-- PARALELISMO
+- PARALELISMO:
+
 Acontece quando duas ou mais tarefas são livres para serem executadas, literalmente, ao mesmo tempo. Necessita, obviamente, de um processador com múltiplas cores, ou múltiplos processadores para que mais de um processo ou thread seja executado ao mesmo tempo.
 Mas não há necessidade de interromper nenhuma delas par que outras possam prosseguir, salvo em casos em que isso é feito de forma intencional.
 
-- CONCORRÊNCIA
+- CONCORRÊNCIA:
+
 Quando duas ou mais tarefas podem começar a ser executadas e terminar em espaços de tempo que se sobrepõem, não significando que elas precisam estar em execução necessariamente no mesmo instante. 
 Em um ambiente com múltiplos CPUs/núcleos, uma tarefa progride ao mesmo tempo que outra. Já no caso de um ambiente single core, duas ou mais tarefas não podem progredir no mesmo exato momento. Mas mais de uma tarefa é processada, sem ficar esperando que uma tarefa termine por completo antes de dar início a outra. 
 É a possibilidade do processador executar instruções ao mesmo tempo que outras operações, como, por exemplo I/O, permitindo que tarefas sejam executadas concorrentemente pelo sistema. 
@@ -458,10 +460,10 @@ Por isso, para colocar na tela todas as mensagens do mailbox, pode-se utilizar o
 ~~~
 iex(1)> send self(), :hello
 :hello
-iex(2)> flush()
-:hello
-:ok
-~~~
+iex(2)> flush()compila
+:hellocompila
+:okcompila
+~~~compila
 
 - *spawn_link/1*
 É usado para criamos processos no Elixir, nós os criamos como processos ligados (linked processes).  
