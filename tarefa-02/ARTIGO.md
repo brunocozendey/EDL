@@ -231,9 +231,10 @@ Em um ambiente com múltiplos CPUs/núcleos, uma tarefa progride ao mesmo tempo 
 A concorrência é o princípio básico para permitir o projeto e implementação de sistemas multitarefas.
 
 A concorrência está ligada a:
-1 - Thread: que é a sequencia de instruções do computador, que pode ser executada independente e normalmente é gerenciada pelo sistema operacional. É importante entender que multi-threads, podem pertencer ao mesmo processo e compartilhar memórias. Elas não são executadas exatamente em paralelo, mas sim com interrupções sequenciais. 
 
-2 - Processos: É algo maior, que tem seu próprio espaço de endereço de memória, que pode ser executado realmente de uma forma paralela, através de arquiteturas multiprocessadas e a comunicação entre elas eles são possíveis apenas usando mecanismos definidos pelo sistema operacional. 
+1. Thread: que é a sequencia de instruções do computador, que pode ser executada independente e normalmente é gerenciada pelo sistema operacional. É importante entender que multi-threads, podem pertencer ao mesmo processo e compartilhar memórias. Elas não são executadas exatamente em paralelo, mas sim com interrupções sequenciais. 
+
+2. Processos: É algo maior, que tem seu próprio espaço de endereço de memória, que pode ser executado realmente de uma forma paralela, através de arquiteturas multiprocessadas e a comunicação entre elas eles são possíveis apenas usando mecanismos definidos pelo sistema operacional. 
 
 
 ## Processos em Elixir
