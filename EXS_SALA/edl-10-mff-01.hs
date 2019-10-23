@@ -37,5 +37,14 @@ lower x y = if x<y then
 menor :: Int
 menor = foldr lower (last xs) xs
 
-main = print(menor)
+calcula :: String -> [Int] -> Int
+calcula op xs = if (op == "maior"|| op == "menor") then
+                        if op == "maior" then
+                            foldr greater (last xs) xs
+                        else
+                            foldr lower (last xs) xs
+                    else 
+                        0
+
+main = print(calcula "maior" xs,calcula "menor" xs )
 

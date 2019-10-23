@@ -25,9 +25,17 @@ possui2 (Galho a1 a2) y   = possui2 a1 y || possui2 a2 y
 --insere Folha x              = Folha
 --insere (Galho x a1 a2) y    = x == y || if y > x then () 
 
+maximo :: Arvore -> Int
+maximo (Folha x)      = if x > max then 
+                          x
+                        else 
+                          max
+maximo (Galho a1 a2)  = maximo a1
+
+
 a0 = Galho (Folha 1) a1 
 a1 = Galho a2 a3
 a2 = Galho (Folha 6) (Folha 7)
 a3 = Galho (Folha 2) (Folha 9)
 
-main = print $ (a0, soma a0, dobra a0, possui a0 2, possui a0 9, possui2 a0 2)
+main = print $ (a0, soma a0, dobra a0, possui a0 2, possui a0 9, possui2 a0 2, maximo a0)
