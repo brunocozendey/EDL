@@ -1,7 +1,10 @@
-data Exp = Res Bool| Num Int
+-- Tratar o Bool como um inteiro, como no C.
+data Exp = Num Int
          | Or Exp Exp
          | And Exp Exp
          | Not Exp
+         | Add Exp Exp
+         | Sub Exp Exp
     deriving Show
 
 imprime :: Exp -> String
@@ -10,6 +13,7 @@ imprime (And e0 e1) = (imprime e0)++ " and " ++ (imprime e1)
 imprime (Or e0 e1) = (imprime e0)++ " or " ++ (imprime e1)
 imprime (Not e0) = "not " ++ (imprime e0)
 
+{-
 avalia :: Exp -> Type
 avalia(Res x) = x
 avalia(And e0 e1) = (avalia e0 && avalia e1)
@@ -21,7 +25,7 @@ avalia' (Res x) = Res x
 avalia' (Or e0 e1) = Res((avalia e0) || (avalia e1))
 avalia' (And e0 e1) = Res((avalia e0) && (avalia e1))
 avalia' (Not e0) = Res(not (avalia e0))
-
+-}
 --1
 --e0 = Num 1
 
@@ -47,4 +51,5 @@ e3 = Not (Res False)
 -- Quando for criar a expressáo "escrita" colocar o = a resultado no final
 --
 --main = print $ (imprime e1,  avalia e1, imprime e2,  avalia e2, imprime e3,  avalia e3, imprime e4,  avalia e4,imprime e5,  avalia e5, imprime e6, avalia e6)
-main = print $ (imprime e0, avalia e0, imprime e1,  avalia e1,imprime e2,  avalia e2, imprime e3,  avalia e3, avalia' e3)
+-- main = print $ (imprime e0, avalia e0, imprime e1,  avalia e1,imprime e2,  avalia e2, imprime e3,  avalia e3, avalia' e3)
+main = print $ (imprime e0, imprime e1)
