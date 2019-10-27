@@ -1,12 +1,17 @@
 
-data Exp = Num Int
-         | Add Exp Exp
-         | Sub Exp Exp
-         | And Exp Exp
-         | Or Exp Exp
-         | Not Exp
+data Exp = Alg | Log
+    deriving Show 
+    
+data Alg = Num Int
+         | Add Alg Alg
+         | Sub Alg Alg
     deriving Show
---
+
+data Log = Res Bool
+         | Or Log Log
+         | And Log Log
+         | Not Log
+    deriving Show
 
 imprime :: Exp -> String
 imprime (Num x) = show x
@@ -18,10 +23,10 @@ imprime (Not e0) = "not " ++ (imprime e0)
 
 avalia :: Exp -> Int
 avalia(Num x) = x
-avalia(Add e0 e1) = avalia e0 + avalia e1
-avalia(Sub e0 e1) = avalia e0 - avalia e1
-avalia(And e0 e1) = (avalia e0 & avalia e1)
-avalia(Or e0 e1) = (avalia e0 | avalia e1)
+avalia(Add e0 e1) = (avalia e0) + (avalia e1)
+avalia(Sub e0 e1) = (avalia e0) - (avalia e1)
+avalia(And e0 e1) = (avalia e0 && avalia e1)
+avalia(Or e0 e1) = (avalia e0 || avalia e1)
 --avalia(Not e0) = 
 
 avalia' :: Exp -> Exp
@@ -47,9 +52,9 @@ e2 = Add (Num 1) (Add (Num 2) (Add (Num 3) (Num 4)))
 e3 = Sub (Sub (Sub (Num 1) (Num 2)) (Num 3)) (Num 4)
 e4 = Sub (Num 1) (Sub (Num 2) (Sub (Num 3) (Num 4)))
 e5 = Sub (Sub (Num 1) (Num 2)) (Sub (Num 3) (Num 4))
-e6 = And (Num 2) (Num 3)
 
 
 -- Quando for criar a expressáo "escrita" colocar o = a resultado no final
 
-main = print $ (imprime e1,  avalia e1, imprime e2,  avalia e2, imprime e3,  avalia e3, imprime e4,  avalia e4,imprime e5,  avalia e5, imprime e6, avalia e6)
+--main = print $ (imprime e1,  avalia e1, imprime e2,  avalia e2, imprime e3,  avalia e3, imprime e4,  avalia e4,imprime e5,  avalia e5, imprime e6, avalia e6)
+main = print (imprime e1)
