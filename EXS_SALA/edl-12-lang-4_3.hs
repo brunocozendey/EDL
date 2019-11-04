@@ -16,6 +16,8 @@ imprime (Or e0 e1) = (imprime e0)++ " or " ++ (imprime e1)
 imprime (Not e0) = "not " ++ (imprime e0)
 
 avalia :: Exp -> Int -- Verificar o uso do Typeclass nessa função pode ser interessante (Eq a) => a -> Int
+-- Não preisa fazer o ifs, se as contas forem feitas com um numero maior que zer ele dara 1 se nao dara false 0*1 = 0 e 1*20 = 1
+-- as funcoes > == usar um nome relativo para implementar.
 avalia(Num x) = x
 avalia(Add e0 e1) = (avalia e0) + (avalia e1)
 avalia(Sub e0 e1) = (avalia e0) - (avalia e1)
