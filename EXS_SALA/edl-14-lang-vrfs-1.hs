@@ -1,7 +1,7 @@
 data Cmd = Atr String Exp   -- atribuicao, ex.: x=1
          | Seq Cmd Cmd      -- sequencia,  ex.: x=1 ; y=x
          | Dcl String       -- declaracao, ex.: int x
-         | Null
+         | Nop
 
 data Exp = Num Int
          | Add Exp Exp
@@ -59,7 +59,7 @@ avaliaProg cmd0 = if verificaProg cmd0 then
 eliminaDcl :: Cmd -> Cmd
 eliminaDcl (Atr s e) = Atr s e 
 eliminaDcl (Seq cmd0 cmd1) = Seq (eliminaDcl cmd0) (eliminaDcl cmd1)    
-eliminaDcl (Dcl _) = Null     
+eliminaDcl (Dcl _) = Nop
 
 
 -- Comando só é válido se antecedido por ATR e VAR : Atribuição e Declaração de variável
