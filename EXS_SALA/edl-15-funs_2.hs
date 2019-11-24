@@ -17,7 +17,7 @@ data Cmd = Atr String Exp   -- Atribuicao, ex.: x=1
         | Cnd Exp Cmd Cmd   -- Condição IF
         | Nop               -- No operation, comando que não executa nenhuma operação.
         | Prt Exp           -- Imprime na tela
-        | Fun String Cmd    -- Declara uma função
+        | Fun String String Cmd    -- Declara uma função
     deriving Show
 
 data Exp = Num Int          -- Declara um tipo inteiro em uma Expressão Airtimética
@@ -57,7 +57,11 @@ avaliaCmd amb (Cnd exp cmd0 cmd1) = if (avaliaExp amb exp) /= 0 then
                                         avaliaCmd amb cmd0
                                     else
                                         avaliaCmd amb cmd1   
-avaliaCmd (mem,cod) (Fun id cmd)  = (mem, escreve cod id cmd) 
+avaliaCmd (mem,cod) (Fun id x cmd)  = (mem', escreve cod id cmd') where
+                                            cmd' = Seq (Atr x (Var "arg")) cmd 
+                                            mem' = escreve mem "arg" 0
+
+
 
 eliminaDcl :: Cmd -> Cmd
 eliminaDcl (Atr s e)        = Atr s e 
@@ -84,46 +88,16 @@ avaliaExp (mem,cod) (App id exp)  = ret where
 -----------------------------------------------------------------------------------------
 
 -- Exemplos de comando
---Prt (Num 10)
--- main = print $ (avaliaCmd ([],[]) (Prt(Num 10)))
-
--- x = 1
--- y = 2
--- print(x+y)
-p1 = Seq
-    (Atr "x" (Num 1))
-        (Seq
-            (Atr "y" (Num 2))
-            (Prt(Add(Var "x") (Var "y"))))
-
 --def duplica (x):
 --    return x+x
 --print(duplica(10))
 
-p2 = Seq
-        (Fun "duplica"
+p1 = Seq
+        (Fun "duplica" "x"
             (Atr "ret" 
-                (Add (Var "arg") (Var "arg"))
+                (Add (Var "x") (Var "x"))
                 )
                     )
         (Prt (App "duplica" (Num 10)))
 
---def soma (v):
---    if v != 0:
---        return v + soma(v-1)
---    else:
---        return 0
-p3 = Seq
-        (Fun "soma" 
-            (Cnd (Var "arg")
-            (Atr "ret"
-             (Add (Var "arg") 
-                (App "soma" 
-                    (Sub    (Var "arg") 
-                            (Num 1)))))
-
-            (Atr "ret" (Num 0))))
-        (Prt (App "soma" (Num 10)))        
-
-
-main = print $ (avaliaCmd ([],[]) p3)
+main = print $ (avaliaCmd ([],[]) p1)
