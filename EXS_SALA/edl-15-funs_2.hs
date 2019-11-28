@@ -8,11 +8,7 @@
 import Debug.Trace  -- para fazer a função print. Funções para traçar e monitorar execuções. útil para investigar bugs ou problemas de 
                     --performance. Não recomendado usar em produção.    
                     -- O trace.show Mostra o argumento já convertido em string.Show a => a -> b -> b
-
-type Cod = [(String, Cmd)]
-type Mem = [(String, Int)]
-type Amb =  (Mem, Cod) -- Define um ambiente pode ser, uma variável de string através de uma Mem ou então um comando, registrado através de um ID associado a um comando.
-    -- Associa um identificador (string) a um valor inteiro
+\    -- Associa um identificador (string) a um valor inteiro
     -- O valor mais recente é adicionado no início da lista
     -- O type só coloca algo como se fosse um Label. Ao invés de ficar escrevendo a lista de Srtring,Int escreve-se Mem
     -- Várias memórias são gravadas como se fosse uma lista de par ordenado, (Id,Numero)
