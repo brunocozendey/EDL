@@ -1,7 +1,13 @@
+-----------------------------------
+-- Está dando erro no Undefined, não estou sabendo levar uma variável qualqer dada pela função ao valor do atrbuto
+-- que será executado pelo App a passagem do x -> arg está sendo o problema.
+----------------------------------
+
+
+
 import Debug.Trace  -- para fazer a função print. Funções para traçar e monitorar execuções. útil para investigar bugs ou problemas de 
                     --performance. Não recomendado usar em produção.    
                     -- O trace.show Mostra o argumento já convertido em string.Show a => a -> b -> b
-
 
 type Cod = [(String, Cmd)]
 type Mem = [(String, Int)]
@@ -27,11 +33,12 @@ data Exp = Num Int          -- Declara um tipo inteiro em uma Expressão Airtim�
          | App String Exp   -- Executa a aplicação principal
     deriving Show
 
+
 -----------------------------------------------------------------------------------------
 -- Alocação Ambiente
 -----------------------------------------------------------------------------------------
 consulta :: [(String, a)] -> String -> a            -- Agora serve tanto para alimentar a pilha de memoria como de codigos de comando.
-consulta []                     id = undefined         -- Variável ad própria linguagem que retorna um valor não definido.
+consulta []                     id = undefined        -- Variável ad própria linguagem que retorna um valor não definido.
 consulta ((id', val'):list)     id = if id == id' then
                                         val'
                                     else
@@ -83,47 +90,48 @@ avaliaExp (mem,cod) (App id exp)  = ret where
 -- Execução
 -----------------------------------------------------------------------------------------
 
+
+--y = 10
+--def f (x):
+--    y = x
+--    print(y)
+--    return y
+--print(f(20))
+--print(y) 
+
 -- Exemplos de comando
---Prt (Num 10)
--- main = print $ (avaliaCmd ([],[]) (Prt(Num 10)))
-
--- x = 1
--- y = 2
--- print(x+y)
-p1 = Seq
-    (Atr "x" (Num 1))
-    (Seq
-        (Atr "y" (Num 2))
-        (Prt(Add(Var "x") (Var "y"))))
-
---def duplica (x):
---    return x+x
---print(duplica(10))
-
-p2 = Seq
-        (Fun "duplica"
-            (Atr "ret" 
-                (Add (Var "arg") (Var "arg"))
+{-p1 = Seq 
+        (Atr "y" (Num 10))
+        (Seq
+            (Fun "f" 
+                (Seq
+                    (Atr "ret" (Var "y"))
+                    (Seq
+                        (Atr "y" (Var "x"))
+                        (Prt (Var "y")))
                 )
-                    )
-        (Prt (App "duplica" (Num 10)))
+            )
+            (Seq
+                (Prt (App "f" (Num 20)))
+                (Prt (Var "y"))
+            )           
+                )        
+-}
 
---def soma (v):
---    if v != 0:
---        return v + soma(v-1)
---    else:
---        return 0
-p3 = Seq
-        (Fun "soma" 
-            (Cnd (Var "arg")
-            (Atr "ret"
-             (Add (Var "arg") 
-                (App "soma" 
-                    (Sub    (Var "arg") 
-                            (Num 1)))))
+p1 = Seq
+    (Atr "y" (Num 10))
+    (Seq
+        (Fun "f"
+            (Atr "ret" (Var "y")))
+        (Prt (App "f" (Num 20)))
 
-            (Atr "ret" (Num 0))))
-        (Prt (App "soma" (Num 10)))        
+        (Atr "ret"
+         (Add (Var "arg") 
+            (App "soma" 
+                (Sub    (Var "arg") 
+                        (Num 1)))))
 
+        (Atr "ret" (Num 0))
+    (Prt (App "soma" (Num 10)))))  
 
 main = print $ (avaliaCmd ([],[]) p1)

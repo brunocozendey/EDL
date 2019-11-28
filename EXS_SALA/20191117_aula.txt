@@ -1,0 +1,30 @@
+Para o exe das multiplas variaveis, usar um map para criar os args1 .. argn
+E depois usar o foldr para atribuir a cada Arg o valor da variável.
+
+Na questão do While, utilizar 
+
+
+f i = "Arg"++Show ii
+main = print (map f [1..10])
+
+Na qquestão do while poderia usar o REP, mas poderia ter feito também uma recursão.
+
+
+
+
+## - Matéria Prova - ##
+P2 - Será parte de interpretador. Matéria do T2 e T3
+
+PF - Lista e árvore. 
+
+Entender a representação e transformar para uma linguagem que for usar.
+Tem que saber representar em C e Java, fazer a questão para representar a estrutura de dados. 
+
+| vira union em c, composição vira struct. E em java uma classe para cada. 
+avalia em c vai ser switch para testar qual union está vendo em java usa polimorfimso e tera uma avalia para cada subclasse. 
+
+Saber criar a funçao de leitura e escrita de memória. 
+
+Fazer a função de repetição e condição. 
+
+Pode cair uma funçao de maniupular o interpretador.criar uma função avaliaProg :: Cmd -> Int

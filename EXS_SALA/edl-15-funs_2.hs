@@ -1,7 +1,13 @@
+-----------------------------------
+-- Está dando erro no Undefined, não estou sabendo levar uma variável qualqer dada pela função ao valor do atrbuto
+-- que será executado pelo App a passagem do x -> arg está sendo o problema.
+----------------------------------
+
+
+
 import Debug.Trace  -- para fazer a função print. Funções para traçar e monitorar execuções. útil para investigar bugs ou problemas de 
                     --performance. Não recomendado usar em produção.    
                     -- O trace.show Mostra o argumento já convertido em string.Show a => a -> b -> b
-
 
 type Cod = [(String, Cmd)]
 type Mem = [(String, Int)]
@@ -17,7 +23,7 @@ data Cmd = Atr String Exp   -- Atribuicao, ex.: x=1
         | Cnd Exp Cmd Cmd   -- Condição IF
         | Nop               -- No operation, comando que não executa nenhuma operação.
         | Prt Exp           -- Imprime na tela
-        | Fun String Cmd    -- Declara uma função
+        | Fun String String Cmd    -- Declara uma função
     deriving Show
 
 data Exp = Num Int          -- Declara um tipo inteiro em uma Expressão Airtimética
@@ -27,11 +33,12 @@ data Exp = Num Int          -- Declara um tipo inteiro em uma Expressão Airtim�
          | App String Exp   -- Executa a aplicação principal
     deriving Show
 
+
 -----------------------------------------------------------------------------------------
 -- Alocação Ambiente
 -----------------------------------------------------------------------------------------
 consulta :: [(String, a)] -> String -> a            -- Agora serve tanto para alimentar a pilha de memoria como de codigos de comando.
-consulta []                     id = undefined         -- Variável ad própria linguagem que retorna um valor não definido.
+consulta []                     id = undefined        -- Variável ad própria linguagem que retorna um valor não definido.
 consulta ((id', val'):list)     id = if id == id' then
                                         val'
                                     else
@@ -57,7 +64,13 @@ avaliaCmd amb (Cnd exp cmd0 cmd1) = if (avaliaExp amb exp) /= 0 then
                                         avaliaCmd amb cmd0
                                     else
                                         avaliaCmd amb cmd1   
-avaliaCmd (mem,cod) (Fun id cmd)  = (mem, escreve cod id cmd) 
+avaliaCmd (mem,cod) (Fun id atr cmd)  = (mem'', escreve cod id cmd) where    -- Tem que adicionar mais um comando aqui, pois o fun que tem as duas infos, criar um cmd' 
+                                        
+                                        (mem'', _ ) = avaliaCmd (mem,cod) (Atr atr (Var "arg")) 
+                                            --mem' = escreve mem "arg" (avaliaExp (mem,cod) (Num 0))
+                                            --val  = consulta mem "arg"                       -- Função, primeiro ela atribui a variável que foi colocado no argumento na heap de memória ao valor de (arg -> var)
+
+avaliaCmd amb (Dcl _)      = amb
 
 eliminaDcl :: Cmd -> Cmd
 eliminaDcl (Atr s e)        = Atr s e 
@@ -84,46 +97,18 @@ avaliaExp (mem,cod) (App id exp)  = ret where
 -----------------------------------------------------------------------------------------
 
 -- Exemplos de comando
---Prt (Num 10)
--- main = print $ (avaliaCmd ([],[]) (Prt(Num 10)))
+p1 = 
+    Seq 
+        (Fun "duplica" "x"
+            (Atr "ret" (Add (Var "x") (Var "x"))))
+        (Prt (App "duplica" (Num 20)))     
 
--- x = 1
--- y = 2
--- print(x+y)
-p1 = Seq
-    (Atr "x" (Num 1))
-        (Seq
-            (Atr "y" (Num 2))
-            (Prt(Add(Var "x") (Var "y"))))
+p2 = Fun "duplica" "x"
+        (Atr "ret" (Add (Var "x") (Var "x")))
 
---def duplica (x):
---    return x+x
---print(duplica(10))
-
-p2 = Seq
-        (Fun "duplica"
-            (Atr "ret" 
-                (Add (Var "arg") (Var "arg"))
-                )
-                    )
-        (Prt (App "duplica" (Num 10)))
-
---def soma (v):
---    if v != 0:
---        return v + soma(v-1)
---    else:
---        return 0
-p3 = Seq
-        (Fun "soma" 
-            (Cnd (Var "arg")
-            (Atr "ret"
-             (Add (Var "arg") 
-                (App "soma" 
-                    (Sub    (Var "arg") 
-                            (Num 1)))))
-
-            (Atr "ret" (Num 0))))
-        (Prt (App "soma" (Num 10)))        
-
+p3 = Seq 
+    (Fun "repete" "x"
+        (Atr "ret" (Var "x")))
+    (Prt (App "repete" (Num 20)))
 
 main = print $ (avaliaCmd ([],[]) p3)
