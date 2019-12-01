@@ -21,8 +21,6 @@ struct Exp{
             
     };
 
-int num;
-
 struct Sub
 {
     Exp ex0;
