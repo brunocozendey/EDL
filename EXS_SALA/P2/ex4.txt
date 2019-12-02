@@ -1,0 +1,34 @@
+def calcula (x,y):
+soma = 0
+while x<y:
+soma = soma + x
+x = x + 1
+return soma
+print(calcula(1,10))
+
+data Exp = Menq Exp Exp
+
+avaliaExp env (Menq e0 e1) = if (avaliaExp env e0) < (avaliaExp env e1) then
+                                    0
+                            else 
+                                    1
+
+p1 = 
+
+    Seq 
+        (Fun "calcula" ["x","y"] 
+            (Seq
+                (Atr "soma" (Num 0))
+                (Seq
+                  (Rep (Menq (Var "x") (Var "y")) 
+                    (Seq 
+                        (Atr "soma" (Add (Var "Soma") (Num 1)))
+                        (Atr "x" (Add (Var "x") (Num 1)))
+                    )
+                  )
+                  (Atr "ret" (Var "soma"))  
+                )
+            )
+        )
+        (Prt App "calcula" [(Num 1), (Num 10)]
+        )
