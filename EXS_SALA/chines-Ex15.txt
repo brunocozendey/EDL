@@ -1,0 +1,46 @@
+## Fazer Chinês do haskell
+- avaliaCmd(Seq
+        (Fun "duplica" "x"
+            (Atr "ret" 
+                (Add (Var "x") (Var "x"))
+                )
+                    )
+        (Prt (App "duplica" (Num 10))))
+
+- avaliaCmd Seq
+- avaliaCmd amb cmd0 -> avaliaCmd amb cmd1 
+- avaliaCmd (Fun "duplica" "x"
+            (Atr "ret" 
+                (Add (Var "x") (Var "x"))
+                )
+                    )
+
+- avaliaCmd (mem,cod) (Fun "duplica" "x"  (Atr "ret" 
+                (Add (Var "x") (Var "x"))
+                )
+                    ))
+- (mem', cod') = avaliaCmd (mem, cod) Atr "x" (Var "arg")
+- mem = [("x", 0), ("arg",0)]
+- ([("x", 0), ("arg",0)], escreve []] "duplica"  (Atr "ret" 
+                (Add (Var "x") (Var "x"))
+- cod = [("duplica","(Atr "ret" 
+                (Add (Var "x") (Var "x")" )]
+
+# Aqui finaliza a parte do avaliaCmd cmd0 e inicia a abaico o cmd1
+- avaliaCmd amb cmd1
+- avaliaCmd amb (Prt (App "duplica" (Num 10)))
+- avaliaExp (App "duplica" (Num 10)))
+- fun         = consulta [("duplica","(Atr "ret" 
+                (Add (Var "x") (Var "x")" )] "duplica"
+- arg = avaliaExp( ([("x", 0), ("arg",0)], ) (Num 10)
+- arg = 10
+- mem' =  escreve mem "arg" arg 
+- mem' = [("arg",10),("x", 0), ("arg",0)]
+-  (mem'', _) = avaliaCmd ([("arg",10),("x", 0), ("arg",0)], cod) avaliaCmd (Atr "ret"  (Add (Var "x") (Var "x")" )] "duplica"
+- avaliaCmd (Atr "ret"  (Add (Var "x") (Var "x")" ) 
+- Ret = escreve mem "ret" val,cod
+val = avaliaExp (Add (Var "x") (Var "x")
+avaliaExp(Var "x") = 0 
+# O x realmente é zero, pois ele não fica apontado para o "arg" ele
+# retorna aquele valor inicial, o arg ele só é passado ao executar
+# o App. 
