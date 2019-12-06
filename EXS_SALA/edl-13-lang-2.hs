@@ -73,4 +73,8 @@ c4 = Seq (Atr "x" (Num 10)) (Atr "x" (Num 1))
 c5 = Seq (Atr "x" (Num 1)) (Seq (Atr "y" (Add (Var "x") (Num 1))) (Atr "x" (Var "y")))
 
 --main = print $ (avaliaCmd amb0 c0, avaliaCmd amb0 c1, avaliaCmd amb0 c2, avaliaCmd amb0 c3, avaliaCmd amb0 c4, avaliaCmd amb0 c5,avaliaCmd amb1 c0, avaliaCmd amb1 c1, avaliaCmd amb1 c2, avaliaCmd amb1 c3, avaliaCmd amb1 c4, avaliaCmd amb1 c5,avaliaCmd amb2 c0, avaliaCmd amb2 c1, avaliaCmd amb2 c2, avaliaCmd amb2 c3, avaliaCmd amb2 c4, avaliaCmd amb2 c5 )
+<<<<<<< HEAD
 main = print $ (avaliaCmd amb0 c0, avaliaCmd amb1 c1, avaliaCmd amb2 c2, avaliaCmd amb0 c3, avaliaCmd amb1 c4, avaliaCmd amb2 c5)
+=======
+main = print $ (avaliaCmd amb0 c0, avaliaCmd amb1 c1, avaliaCmd amb2 c2, avaliaCmd amb0 c3, avaliaCmd amb1 c4, avaliaCmd amb2 c5)
+>>>>>>> 9a933101852cd5897642213519017dc46c66adb2

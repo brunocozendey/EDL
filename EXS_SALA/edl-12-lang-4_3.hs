@@ -8,48 +8,46 @@ data Exp = Num Int
     deriving Show
 
 imprime :: Exp -> String
-imprime (Res x) = show x
+imprime (Num x) = show x
+imprime (Add e0 e1) = (imprime e0)++ " + " ++ (imprime e1)
+imprime (Sub e0 e1) = (imprime e0)++ " - " ++ (imprime e1)
 imprime (And e0 e1) = (imprime e0)++ " and " ++ (imprime e1)
 imprime (Or e0 e1) = (imprime e0)++ " or " ++ (imprime e1)
 imprime (Not e0) = "not " ++ (imprime e0)
 
-{-
-avalia :: Exp -> Type
-avalia(Res x) = x
-avalia(And e0 e1) = (avalia e0 && avalia e1)
-avalia(Or e0 e1) = (avalia e0 || avalia e1)
-avalia(Not e0) = not (avalia e0)
+avalia :: Exp -> Int -- Verificar o uso do Typeclass nessa função pode ser interessante (Eq a) => a -> Int
+-- Não preisa fazer o ifs, se as contas forem feitas com um numero maior que zer ele dara 1 se nao dara false 0*1 = 0 e 1*20 = 1
+-- as funcoes > == usar um nome relativo para implementar.
+avalia(Num x) = x
+avalia(Add e0 e1) = (avalia e0) + (avalia e1)
+avalia(Sub e0 e1) = (avalia e0) - (avalia e1)
+avalia(And e0 e1) = if (avalia e0 == 0 || avalia e0 == 1) && (avalia e1 == 0 || avalia e1 == 1)  then
+                        (avalia e0) * (avalia e1)                
+                    else 
+                        error "Operador *AND* só aceita 0 ou 1 como input" 
 
-avalia' :: Exp -> Exp
-avalia' (Res x) = Res x
-avalia' (Or e0 e1) = Res((avalia e0) || (avalia e1))
-avalia' (And e0 e1) = Res((avalia e0) && (avalia e1))
-avalia' (Not e0) = Res(not (avalia e0))
--}
---1
---e0 = Num 1
+avalia(Or e0 e1) = if (avalia e0 == 0 || avalia e0 == 1) && (avalia e1 == 0 || avalia e1 == 1) then
+                        if ((avalia e0) + (avalia e1)) > 1 then
+                            0
+                        else 
+                            1
 
---1 + 10 - 20
---e1 =  Sub (Add (Num 1) (Num 10)) (Num 20)
+                    else 
+                        error "Operador *OR* só aceita 0 ou 1 como input"
 
---1 + (10 - 20)
---e2 = Add (Num 1) (Sub (Num 10) (Num 20)) 
+avalia(Not e0) = if (avalia e0 == 0 || avalia e0 == 1) && (avalia e1 == 0 || avalia e1 == 1) then
+                    if (avalia e0 == 0) then
+                        1
+                    else 
+                        0
+                else 
+                    error "Operador *NOT* só aceita 0 ou 1 como input"
 
---(5 + 5) - (5 - 5)
---e3 = Sub (Add (Num 5) (Num 5)) (Sub (Num 5) (Num 5))
-
---e1 = Add (Add (Add (Num 1) (Num 2)) (Num 3)) (Num 4)
---e2 = Add (Num 1) (Add (Num 2) (Add (Num 3) (Num 4)))
---e3 = Sub (Sub (Sub (Num 1) (Num 2)) (Num 3)) (Num 4)
---e4 = Sub (Num 1) (Sub (Num 2) (Sub (Num 3) (Num 4)))
---e5 = Sub (Sub (Num 1) (Num 2)) (Sub (Num 3) (Num 4))
-e0 = Res False
-e1 = And (Res False) (Res True)
-e2 = Or (Res False) (Res True)
-e3 = Not (Res False) 
+e0 = And (Num 1) (Num 0)
+e1 = Or (Num 1) (Num 0)
+e2 = Not (Add(Num 1) (Num 0))
+e3 = Not (Not (Num 1))
+e4 = And (Or (Num 1) (Num 1))
 
 -- Quando for criar a expressáo "escrita" colocar o = a resultado no final
---
---main = print $ (imprime e1,  avalia e1, imprime e2,  avalia e2, imprime e3,  avalia e3, imprime e4,  avalia e4,imprime e5,  avalia e5, imprime e6, avalia e6)
--- main = print $ (imprime e0, avalia e0, imprime e1,  avalia e1,imprime e2,  avalia e2, imprime e3,  avalia e3, avalia' e3)
-main = print $ (imprime e0, imprime e1)
+main = print $ (imprime e0, imprime e1, imprime e2,imprime e3, avalia e0, avalia e1, avalia e2, avalia e3)

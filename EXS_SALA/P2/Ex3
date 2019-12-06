@@ -1,0 +1,22 @@
+data Cmd = Atr String Exp   
+        | Seq Cmd Cmd       
+        | Dcl String        
+        | Cnd Exp Cmd Cmd         
+        | Fun String Cmd
+
+{-
+Crie uma função repetidas :: Cmd -> [String] que receba um comando e retorne uma lista de
+variáveis que foram redeclaradas no programa:
+Considere que variáveis globais (declaradas fora de funções) não conflitam com variáveis locais
+(declaradas dentro de funções). Apenas conflitos entre globais ou locais da mesma função devem ser
+considerados como redeclarações
+-}
+
+repetidas :: Cmd -> [String]
+repetidas (Atr id exp) = id:mem' where
+                        (mem', _) = avaliaExp [] exp
+repetidas (Seq cmd0 cmd1) = Seq (repetidas cmd0) (repetidas cmd1)    
+repetidas (Dcl var) = [var]
+repetidas (Cnd exp cmd0 cmd1) = id:mem' where
+                                    (mem', _) = avaliaExp [] exp
+repetidas (Fun id cmd) = repetidas cmd
