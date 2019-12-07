@@ -37,37 +37,10 @@ notasp2 turma = map nota2 turma
 somanota :: (String, Float, Float) -> Float
 somanota (_,x,y) = x + y
 
-notasp1p2 :: [ (String,Float,Float) ] -> [Float]
-notasp1p2 turma = map somanota turma
+menor5 :: [ (String,Float,Float) ] -> [Float]
+menor5 turma = filter (\x -> x<=5) (foldr (\(s, f1, f2) acc -> f1:f2:acc) [] turma)
 
-todas :: [ (String,Float,Float) ] -> (Float, Float, Float)
-todas turma = ( (mediasnota (notasp1 turma)), (mediasnota (notasp2 turma)), (mediasnota (notasp1p2 turma)))
+--menor5 :: (String, Float, Float) -> Bool
+--menor5 (_, x, y) =  (x <= 5) || (y <= 5)    
 
-menor5 :: (String, Float, Float) -> Bool
-menor5 (_, x, y) =  (x <= 5) || (y <= 5)    
-
-notas1e2 :: (String, Float, Float) -> [Float]
-notas1e2 (_,n1, n2) = if n1 <= 5 then
-                        if n2<= 5 then
-                            [n1,n2]
-                        else
-                            [n1]
-                    else 
-                        if n2 <= 5 then
-                            [n2]
-                        else []
-
-baixas :: [(Float, Float)]
-baixas = map teste2 (filter menor5 turma1)
-
-teste2 :: (String, Float, Float) -> (Float, Float)
-teste2(_,f1,f2) = (f1,f2)
-
-tto :: (Float, Float) -> [Float]
-tt0 (f1,f2) = f1:f2
-
-merge :: [(Float, Float)] -> [Float]
-merge list = map tt0 [] list
-
-
-main = print $ (merge baixas)
+main = print $ (menor5 turma1)
