@@ -40,7 +40,15 @@ somanota (_,x,y) = x + y
 menor5 :: [ (String,Float,Float) ] -> [Float]
 menor5 turma = filter (\x -> x<=5) (foldr (\(s, f1, f2) acc -> f1:f2:acc) [] turma)
 
---menor5 :: (String, Float, Float) -> Bool
---menor5 (_, x, y) =  (x <= 5) || (y <= 5)    
+aprovado :: (String,Float,Float) -> String
+aprovado a = if (media a) >= 5 then
+                "(Aprovado)"
+            else
+                "(Reprovado)"
 
-main = print $ (menor5 turma1)
+pretty :: [(String, Float, Float)] -> String
+pretty turma = nome where
+                nome = foldr (\(s,n1,n2) acc -> s++" "++show (media (s,n1,n2))++" "++aprovado (s,n1,n2)++"\n"++acc) "" turma
+
+
+main = print $ (pretty turma1)
