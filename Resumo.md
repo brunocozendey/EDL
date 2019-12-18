@@ -1,6 +1,7 @@
-# EDL Resumos
+# EDL Resumo
 
-# Pattern Matching ("Correspondência de Padrões")= é uma construção sintática. Consiste de especificar padrões, para o qual alguns dados devem corresponder e então checar para ver se correspndem e ir desconstruindo o dado de acordo com este padrão.
+## Pattern Matching ("Correspondência de Padrões")
+É uma construção sintática. Consiste de especificar padrões, para o qual alguns dados devem corresponder e então checar para ver se correspndem e ir desconstruindo o dado de acordo com este padrão.
 
 Ao definir funções é possível definir separadamente corpos de funções para diferentes padrões.
 Quando se chama uma função, os padrões serã checados de cima para baixo e quando o input correpsonder a um dos padrões a função será usada. 
@@ -8,7 +9,7 @@ O Corpo de função sempre executará assim que o primeiro padrão corresponder.
 Os padrões são importantes para recursãi, lembrando sempre de colocar o caso base.
 Caso não encontre um padrão correspondente será gerada uma exceção Non-Excha...
 
-# Listas
+## Listas
  fst ou snd retornam o primeiro e o segundo elemento de uma lista respectivamente.
  _ (underline) diz que aquela variável não importa.
  let xs = [(1,2), (4,3),(2,4)] [a+b | (a,b) <-xs], retornará [4,7,6]
@@ -24,7 +25,8 @@ Caso não encontre um padrão correspondente será gerada uma exceção Non-Exch
  O Símbolo :: pode ser lido como : "a variável a esquerda do símbolo :: tem o tipo de"
  Em uma função não há uma forma clara do que é atributo de entrada ou sáida, a forma mais fácil é que o último -> indica a saída. 
 
- # O tipo INTEGER é diferente de INT, pois aceita números muito grandes e também é mais eficiente. 
+ ## INTEGER 
+ É diferente de INT, pois aceita números muito grandes e também é mais eficiente. 
  Os tipos são escritos com letra maiúscula. Se definirmos um tipo, como qualquer letra, ele será um tipo variável, isto é, pode ser qualquer tipo. É parecido com 
  o "generics" em outras linguagens. Em Haskell isso é muito poderoso para escrever funções gerais que não possuem comportamento específico de um tipo.
  As funções deste tipo são chamados de polimórfica.
@@ -54,7 +56,8 @@ Caso não encontre um padrão correspondente será gerada uma exceção Non-Exch
     sum'[] = 0
     sum'(x:xs) = x + sum' xs
 
-## Há algo chamado patterns (Padrões), que é uma maneira prática de separar algo de acordo com um padrão e vinculá-los a nomes, mantendo uma referêcnia a tudo. Para fazer isso coloca-se um nome e um @ anteso do pattern. Por exemplo:
+## Patterns (Padrões)
+É uma maneira prática de separar algo de acordo com um padrão e vinculá-los a nomes, mantendo uma referêcnia a tudo. Para fazer isso coloca-se um nome e um @ anteso do pattern. Por exemplo:
 xs@(x:y:ys). Terá o mesmo resultado do que x:y:ys, mas é mais fácil de listar toda lista usando xs ao in´ves de repetir x:y:ys no corpo da função novamente. 
 Ex: capital :: String -> String
     capital "" = "Empty"
@@ -72,7 +75,8 @@ DizIMC imc
     |imc <= 30.0 = "Está acima do peso !"
     | otherwise = "Está uma baleia, parbéns !"
 
-## Os "guards" são indicados pelos "pipes" "|", que seguem o nome da função e seus parâmetros. O guard é basicamente uma expressão boleana, 
+## Guards
+Os "guards" são indicados pelos "pipes" "|", que seguem o nome da função e seus parâmetros. O guard é basicamente uma expressão boleana, 
 Se for Trye,a  função correspondente é usado, caso seja False segue para o próximo Guard. O Otherwise sever para encaixar caso nenhum dos cases anteriores tenham sido satisfeitos. 
 Os Guards são como o "case" ou uma série de if's aninhados. 
 
@@ -83,7 +87,8 @@ DizIMC peso altura
     |peso/altura^2 <= 30.0 = "Está acima do peso !"
     | otherwise = "Está uma baleia, parbéns !"
 
-## Where: No que no exemplo anterior foi repetido três vezes a equação da fução peso/altura, o ideal é que ela fosse calculada apenas uma vez, para não ficar repetindo código. 
+## WHERE
+No que no exemplo anterior foi repetido três vezes a equação da fução peso/altura, o ideal é que ela fosse calculada apenas uma vez, para não ficar repetindo código. 
 Logo poderíamos escrever o ex, da seguinte forma. 
 Ex:
 
@@ -150,7 +155,7 @@ No entanto podemos usar o let in vinculado a um predicado e o nome definido ser�
 Ex: let zoot xyz = x*y*zoot
 zoot 3 9 2 
 
-## case
+## CASE
 
 Em haskell esse conceito é aprimorado, são expressões que podem avaliar possíveis casos de valor da variável e também fazer correspondência de padrões.
 Pega uma variável, faz a correspondência de padrão e executa o código de acordo com esses valores. 
