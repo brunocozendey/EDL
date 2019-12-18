@@ -12,7 +12,7 @@ Caso não encontre um padrão correspondente será gerada uma exceção Non-Exch
 ## Listas
  fst ou snd retornam o primeiro e o segundo elemento de uma lista respectivamente.
  _ (underline) diz que aquela variável não importa.
- let xs = [(1,2), (4,3),(2,4)] [a+b | (a,b) <-xs], retornará [4,7,6]
+{ let xs = [(1,2), (4,3),(2,4)] [a+b | (a,b) <-xs], retornará [4,7,6] }
 
  [] indica uma lista vazia
  x:xs associa ao head da lista xs o elemento x. Esse padrão é muito utilizado em funções recursivas. S
